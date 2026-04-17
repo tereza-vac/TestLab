@@ -34,3 +34,6 @@ supabase/.temp
 
 # Coverage
 coverage
+
+# TypeScript build metadata
+*.tsbuildinfo
