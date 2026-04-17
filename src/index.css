@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 12%;
+
+    --primary: 212 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 20%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 15% 20%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 40%;
+    --success-foreground: 0 0% 100%;
+    --success-soft: 142 70% 94%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-soft: 38 92% 94%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 212 100% 50%;
+
+    --sidebar: 220 18% 97%;
+    --sidebar-foreground: 220 15% 20%;
+    --sidebar-accent: 220 14% 92%;
+    --sidebar-accent-foreground: 220 15% 12%;
+    --sidebar-border: 220 13% 88%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 222 14% 8%;
+    --foreground: 220 15% 94%;
+
+    --card: 222 14% 10%;
+    --card-foreground: 220 15% 94%;
+
+    --popover: 222 14% 10%;
+    --popover-foreground: 220 15% 94%;
+
+    --primary: 212 100% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 14% 14%;
+    --secondary-foreground: 220 15% 94%;
+
+    --muted: 222 14% 14%;
+    --muted-foreground: 220 9% 64%;
+
+    --accent: 222 14% 14%;
+    --accent-foreground: 220 15% 94%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-soft: 142 40% 20%;
+
+    --warning: 38 85% 55%;
+    --warning-foreground: 0 0% 100%;
+    --warning-soft: 38 40% 20%;
+
+    --border: 222 14% 18%;
+    --input: 222 14% 18%;
+    --ring: 212 100% 58%;
+
+    --sidebar: 222 14% 10%;
+    --sidebar-foreground: 220 15% 90%;
+    --sidebar-accent: 222 14% 16%;
+    --sidebar-accent-foreground: 220 15% 94%;
+    --sidebar-border: 222 14% 18%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Hide focus outline when clicking, but keep it for keyboard */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* --- KaTeX tweaks so equations inherit the current text color --- */
+.katex {
+  font-size: 1em;
+}
+.katex,
+.katex .base,
+.katex .mord,
+.katex .mop,
+.katex .mbin,
+.katex .mrel,
+.katex .mopen,
+.katex .mclose,
+.katex .mpunct,
+.katex .minner {
+  color: inherit;
+}
+
+/* MathLive field embedded inside cards */
+math-field {
+  font-family: "KaTeX_Main", "Cambria Math", serif;
+}
+
+/* Prose / TipTap editor */
+.tl-prose {
+  @apply text-[15px] leading-relaxed;
+}
+.tl-prose p {
+  @apply my-2;
+}
+.tl-prose p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-muted-foreground pointer-events-none float-left h-0;
+}
+.tl-prose strong {
+  @apply font-semibold;
+}
+.tl-prose em {
+  @apply italic;
+}
+.tl-prose ul {
+  @apply list-disc ml-5 my-2;
+}
+.tl-prose ol {
+  @apply list-decimal ml-5 my-2;
+}
+.tl-prose code {
+  @apply px-1 py-0.5 rounded bg-muted text-sm font-mono;
+}
