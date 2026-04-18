@@ -7,13 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { useShallow } from "zustand/react/shallow";
 import { useDocumentsStore } from "@/stores/documentsStore";
 import { useTheme } from "@/components/theme-provider";
 import { hasSupabase } from "@/lib/supabase";
 import { formatRelative } from "@/lib/utils";
 
 export function Component() {
-  const docs = useDocumentsStore((s) => s.order.map((id) => s.docs[id]).filter(Boolean));
+  const docs = useDocumentsStore(
+    useShallow((s) => s.order.map((id) => s.docs[id]).filter(Boolean)),
+  );
   const addDoc = useDocumentsStore((s) => s.addDoc);
   const deleteDoc = useDocumentsStore((s) => s.deleteDoc);
   const { theme, setTheme } = useTheme();

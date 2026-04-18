@@ -11,12 +11,17 @@ import { PageHeader } from "@/components/PageHeader";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ItemCard } from "@/components/ItemCard";
+import { useShallow } from "zustand/react/shallow";
 import { useItemsStore } from "@/stores/itemsStore";
 import { useDocumentsStore } from "@/stores/documentsStore";
 
 export function Component() {
-  const items = useItemsStore((s) => s.order.map((id) => s.items[id]).filter(Boolean));
-  const docs = useDocumentsStore((s) => s.order.map((id) => s.docs[id]).filter(Boolean));
+  const items = useItemsStore(
+    useShallow((s) => s.order.map((id) => s.items[id]).filter(Boolean)),
+  );
+  const docs = useDocumentsStore(
+    useShallow((s) => s.order.map((id) => s.docs[id]).filter(Boolean)),
+  );
   const recent = items.slice(0, 6);
 
   const stats = {

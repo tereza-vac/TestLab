@@ -6,10 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/PageHeader";
 import { ItemCard } from "@/components/ItemCard";
+import { useShallow } from "zustand/react/shallow";
 import { useItemsStore } from "@/stores/itemsStore";
 
 export function Component() {
-  const items = useItemsStore((s) => s.order.map((id) => s.items[id]).filter(Boolean));
+  const items = useItemsStore(
+    useShallow((s) => s.order.map((id) => s.items[id]).filter(Boolean)),
+  );
   const [q, setQ] = useState("");
 
   const filtered = useMemo(() => {

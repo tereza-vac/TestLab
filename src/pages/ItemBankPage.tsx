@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { useShallow } from "zustand/react/shallow";
 import { useItemsStore } from "@/stores/itemsStore";
 import {
   DIFFICULTY_LABELS,
@@ -22,7 +23,9 @@ import {
 } from "@/types/item";
 
 export function Component() {
-  const items = useItemsStore((s) => s.order.map((id) => s.items[id]).filter(Boolean));
+  const items = useItemsStore(
+    useShallow((s) => s.order.map((id) => s.items[id]).filter(Boolean)),
+  );
   const [topic, setTopic] = useState<string>("all");
   const [type, setType] = useState<string>("all");
   const [diff, setDiff] = useState<string>("all");
